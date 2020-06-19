@@ -115,7 +115,7 @@ TPRDER.s <- data.frame(t(mapply(FUN = TPRSimple, CP_v, TPR_v, TS_v))) # DER give
 # vector for cut-points: CP = 1%, 10%
 CP_v <- rep(x = c(.01, .1), times = 275)
 
-# vector for real tail proportion ratios: TPR = 1.1, 1.2, 1.5, 2
+# vector for real tail proportion ratios: TPR = 1.1, 1.2, 1.5, 2, 3
 TPR_v <- c(1.1, 1.2, 1.5, 2, 3)[rep(x = 1:5, times = rep(110, 5))]
 
 # vector for Cohen's d values: -.8 ≤ d ≤ .8
@@ -153,7 +153,7 @@ TPRSim <- function(CP, TPR, d, TS) {
     
     TPRs[i] <- length(sim_y[sim_y > tail])/nb2/(length(sim_x[sim_x > tail])/nb1) # observed TPR
     
-    if (i %% nIter == 0) {print(paste0(i/nIter, ' at ', Sys.time()), quote = F)} # print updates
+    if (i %% nIter == 0) {print(paste0(i, ' at ', Sys.time()), quote = F)} # print updates
   }
   DER <- 100*length(TPRs[TPRs < 1])/length(TPRs) # DER / percentage of observed TPRs < 1
   return(data.frame(DER, CP = CP*100, TPR, d, TS))
@@ -202,7 +202,7 @@ PowerSim <- function(s, n) {
     
     p[i] <- leveneTest(y = d$xy ~ d$condition, data = d)$'Pr(>F)'[1:1] # Levene's test
     
-    if (i %% nIter == 0) {print(paste0(i/nIter, ' at ', Sys.time()), quote = F)} # print updates
+    if (i %% nIter == 0) {print(paste0(i, ' at ', Sys.time()), quote = F)} # print updates
   }
   power <- sum(p < .05)/nSims*100 # calculate power as a percentage
   return(data.frame(Power = power, VR = s^2, n))
@@ -216,6 +216,8 @@ LevPower <- data.frame(t(mapply(PowerSim, s_v, n_v))) # power given s, nb
 # estimates at higher sample sizes once power has exceeded 99.995%; all will round to 100.00%.
 # This threshold is surpassed at about n = 2800 for VR = 1.4, n = 4600 for VR = 1.3,
 # and n = 9500 for VR = 1.2; it is not surpassed for VR = 1.1.
+
+
 
 
 

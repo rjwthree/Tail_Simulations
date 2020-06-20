@@ -39,7 +39,7 @@ VRSim <- function(s, n) {
     
     if (i %% nIter == 0) {print(paste0(i, ' at ', Sys.time()), quote = F)} # print updates
   }
-  DER <- 100*length(VRs[VRs < 1])/length(VRs) # DER / percentage of observed VRs < 1
+  DER <- length(VRs[VRs < 1])/length(VRs)*100 # DER / percentage of observed VRs < 1
   return(data.frame(DER, VR = s^2, n))
 }
 
@@ -155,7 +155,7 @@ TPRSim <- function(CP, TPR, d, TS) {
     
     if (i %% nIter == 0) {print(paste0(i, ' at ', Sys.time()), quote = F)} # print updates
   }
-  DER <- 100*length(TPRs[TPRs < 1])/length(TPRs) # DER / percentage of observed TPRs < 1
+  DER <- length(TPRs[TPRs < 1])/length(TPRs)*100 # DER / percentage of observed TPRs < 1
   return(data.frame(DER, CP = CP*100, TPR, d, TS))
 }
 

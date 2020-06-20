@@ -35,7 +35,7 @@ VRSim <- function(s, n) {
     sim_x <- rnorm(n = nb, sd = 1) # simulate nb participants in condition x
     sim_y <- rnorm(n = nb, sd = s) # simulate nb participants in condition y
     
-    VRs[i] <- (sd(sim_y)/sd(sim_x))^2 # observed VR
+    VRs[i] <- var(sim_y)/var(sim_x) # observed VR
     
     if (i %% nIter == 0) {print(paste0(i, ' at ', Sys.time()), quote = F)} # print updates
   }

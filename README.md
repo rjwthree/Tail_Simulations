@@ -1,15 +1,13 @@
-# Levene VR TPR Simulations
+## Levene VR TPR Simulations
 Researchers frequently underestimate the sample sizes needed to reliably detect typical group differences in variability and tail behavior. Three simulation studies are implemented here to emphasize and delineate this issue.
 
+Terms and acronyms:
 
 VR - variance ratio: ratio of variance in one group to variance in another group. The square root of this is the standard deviation ratio.
 
 TPR - tail proportion ratio: a relational measure of density in a specified range, which compares the proportions of two distributions above or below a given cut-point in the form of a ratio.
 
 Levene's test - a test of homogeneity of variance, the median-based variant of which is highly robust.
-
-
-Other terms:
 
 Real VR / Real TPR: the expected value of an observed VR/TPR when sampling from a given pair of distributions.
 

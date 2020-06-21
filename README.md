@@ -3,11 +3,11 @@ Researchers frequently underestimate the sample sizes needed to reliably detect 
 
 ### Terms and acronyms
 
-Variance Ratio (VR) - The ratio of variance in one group to variance in another group. The square root of this is the standard deviation ratio.
-
-Tail Proportion Ratio (TPR) - A relational measure of density in a specified range, which compares the proportions of two distributions above or below a given cut-point in the form of a ratio.
-
 Levene's test - A test of homogeneity of variance, the median-based variant of which is highly robust (and also known as the Brown-Forsythe test).
+
+Variance Ratio (VR) - The ratio of variance in one group to variance in another group. Its square root is the standard deviation ratio.
+
+Tail Proportion Ratio (TPR) - A relational measure of density in a specified range which compares the proportions of two distributions above or below a given cut-point in the form of a ratio. The range is defined by the combined distribution (e.g., the cut-point is the 90th percentile and the tail's range is all data above the 90th percentile).
 
 Real VR / Real TPR - The expected value of an observed VR/TPR when sampling from a given pair of distributions.
 

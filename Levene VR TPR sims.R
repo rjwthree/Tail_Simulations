@@ -208,7 +208,7 @@ PowerSim <- function(s, n) {
   return(data.frame(Power = power, VR = s^2, n))
 }
 
-LevPower <- data.frame(t(mapply(PowerSim, s_v, n_v))) # power given s, n
+LevPower <- data.frame(t(mapply(FUN = PowerSim, s_v, n_v))) # power given s, n
 
 
 # Caveat for Levene Sim

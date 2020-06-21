@@ -188,7 +188,7 @@ PowerSim <- function(s, n) {
   nb <- n/2 # number of participants per group
   
   condition <- c(rep(x = 'x', times = nb), rep(x = 'y', times = nb)) # condition labels
-  p <- numeric(nSims) # empty container for Levene's test p-values
+  p <- numeric(nSims) # empty container for Levene's test p values
   
   c <<- c + 1 # print global progress and unique info, then print start
   print(paste0(c, '/', length(s_v), ', VR = ', s^2, ', n = ', n), quote = F)
@@ -200,7 +200,7 @@ PowerSim <- function(s, n) {
     
     d <- data.frame(xy = c(sim_x, sim_y), condition) # dataframe for Levene's test
     
-    p[i] <- leveneTest(y = d$xy ~ d$condition, data = d)$'Pr(>F)'[1:1] # Levene's test
+    p[i] <- leveneTest(y = d$xy ~ d$condition, data = d)$'Pr(>F)'[1] # Levene's test p value
     
     if (i %% nIter == 0) {print(paste0(i, ' at ', Sys.time()), quote = F)} # print updates
   }
@@ -208,7 +208,7 @@ PowerSim <- function(s, n) {
   return(data.frame(Power = power, VR = s^2, n))
 }
 
-LevPower <- data.frame(t(mapply(PowerSim, s_v, n_v))) # power given s, nb
+LevPower <- data.frame(t(mapply(PowerSim, s_v, n_v))) # power given s, n
 
 
 # Caveat for Levene Sim

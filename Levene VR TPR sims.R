@@ -187,7 +187,7 @@ PowerSim <- function(s, n) {
   nIter <- 10^6 # progress updates will print at multiples of this number
   nb <- n/2 # number of participants per group
   
-  condition <- c(rep(x = 'x', times = nb), rep(x = 'y', times = nb)) # condition labels
+  condition <- c(rep('x', times = nb), rep('y', times = nb)) # condition labels
   p <- numeric(nSims) # empty container for Levene's test p values
   
   c <<- c + 1 # print global progress and unique info, then print start

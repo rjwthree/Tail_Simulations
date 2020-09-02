@@ -1,4 +1,4 @@
-# Levene VR TPR Simulations
+# Simulations of Tails and Variability
 Researchers frequently underestimate the sample sizes needed to reliably detect typical group differences in variability and tail behavior. Three simulation studies are implemented here to emphasize and delineate this issue.
 
 ### Terms and acronyms

@@ -29,7 +29,7 @@ The simple variant uses real TPRs of 1.1, 1.2, and 1.5; cut-points of 1% and 10%
 
 Results from the simple variant are plotted in the file 'TPR Figure'.
 
-See the PDF file for an explanation of the formulas for the standard deviation ratio.
+See the file TPR_Simulation.pdf for an explanation of the formulas for the standard deviation ratio.
 
 ## Levene Simulation
 Take the example of real VR = 1.3 and n = 1,000. This simulation generates 500 data points from a normal distribution with mean 0 and variance 1, and another 500 from a distribution with mean 0 and variance 1.3. It then uses the 'car' package to conduct the median-based Levene's test, and the p value is recorded. This is performed ten million times, and the percentage of cases in which the variance difference is significant at the 5% level defines the power. The result was power = 77.94%.

@@ -1,5 +1,5 @@
 # Simulations of Tails and Variability
-Researchers frequently underestimate the sample sizes needed to reliably detect typical group differences in variability and tail behavior. Three simulation studies are implemented here to emphasize and delineate this issue.
+Researchers frequently underestimate the sample sizes needed to reliably detect typical group differences in variability and tail behavior. [Three simulation studies](https://github.com/rjwthree/Tail_Simulations/blob/master/Levene%20VR%20TPR%20sims.R) are implemented here to emphasize and delineate this issue.
 
 ### Terms and acronyms
 

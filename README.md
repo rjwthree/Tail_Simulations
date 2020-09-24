@@ -7,13 +7,13 @@ Levene's test - A test of homogeneity of variance, the median-based variant of w
 
 Variance Ratio (VR) - The ratio of variance in one group to variance in another group. Its square root is the standard deviation ratio.
 
-Tail Proportion Ratio (TPR) - A relational measure of density in a specified range which compares the proportions of two distributions above or below a given cut-point in the form of a ratio. The range is defined by the combined distribution (e.g., the cut-point is the 90th percentile and the tail's range is all data above the 90th percentile).
+Tail Proportion Ratio (TPR) - A relational measure of density beyond a given cut-point in a distribution, which compares the proportions of two distributions above or below the cut-point in the form of a ratio. The location of the cut-point is defined by the combined distribution (e.g., the cut-point is at the 90th percentile and the tail contains all data above the 90th percentile).
+
+Tail Size (TS) - The number of data points beyond a given cut-point (CP). Cut-points in the TPR simulation specify the top or bottom 1% or 10%. For instance, the tail size beyond a 10% cut-point in a sample of 300 is 30.
 
 Real VR / Real TPR - The expected value of an observed VR/TPR when sampling from a given pair of distributions.
 
 Directional Error Rate (DER) - A ratio of 1 indicates equality. Real VRs/TPRs in these simulations are always greater than 1, so observed VRs/TPRs less than 1 are qualitatively incorrect. The DER is the percentage of observed VRs/TPRs less than 1.
-
-Tail Size (TS) - The number of data points beyond a given cut-point (CP). Cut-points in the TPR simulation specify the top or bottom 1% or 10%. For instance, the tail size beyond a 10% cut-point in a sample of 300 is 30.
 
 ## VR Simulation
 Take the example of real VR = 1.1 and n = 500. This simulation generates 250 data points from a normal distribution with mean 0 and variance 1, and another 250 from a distribution with mean 0 and variance 1.1. It then computes and records the observed VR. This is performed ten million times, and the result was DER = 22.63%. That is, 22.63% of observed VRs fell below 1, compared to a random baseline of 50%.

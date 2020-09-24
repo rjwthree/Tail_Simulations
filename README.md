@@ -22,7 +22,7 @@ Real VRs range from 1.1 to 1.4 and sample sizes from 20 to 3,000. Higher real VR
 
 All results are plotted in the file '[VR Figure](https://raw.githubusercontent.com/rjwthree/Tail_Simulations/master/VR%20Figure.png)'.
 
-## TPR Simulation
+## [TPR Simulation](https://github.com/rjwthree/Tail_Simulations/blob/master/Levene%20VR%20TPR%20sims.R#L58)
 There are two variants of this simulation. Take an example of the simple variant: real TPR = 1.2, CP = 1%, TS = 100. First, the total group size is calculated: since the cut-point is 1%, the total group must be 100 times as large as the tail, which has size 100: 100 * 100 = 10,000. A [formula](https://github.com/rjwthree/Tail_Simulations/blob/master/TPR_simulation.pdf) then computes the standard deviation ratio (s) needed to produce an expected TPR of 1.2 in the top and bottom 1% of the combined distribution (with no mean difference, the tails are symmetric). About half of the 10,000 data points are generated from a normal distribution with mean 0 and sd 1, and the remainder from a distribution with mean 0 and sd s≈1.0298 (computed above). The quantile function locates the 1st percentile of the combined distribution of observed data, and the TPR below that point is computed and recorded. This is performed ten million times, and the result was DER = 17.98%.
 
 The simple variant uses real TPRs of 1.1, 1.2, and 1.5; cut-points of 1% and 10%; and tail sizes between 10 and 1,000. The complex variant includes mean differences, expressed in terms of Cohen's d, and it experiments with higher real TPRs of 2 and 3. It has a more complicated [formula](https://github.com/rjwthree/Tail_Simulations/blob/master/TPR_simulation.pdf) for the standard deviation ratio. Higher real TPRs and larger tail sizes produce fewer observed TPRs below 1.
@@ -31,7 +31,7 @@ Results from the simple variant are plotted in the file '[TPR Figure](https://ra
 
 See the file [TPR_Simulation.pdf](https://github.com/rjwthree/Tail_Simulations/blob/master/TPR_simulation.pdf) for an explanation of the formulas for the standard deviation ratio.
 
-## Levene Simulation
+## [Levene Simulation](https://github.com/rjwthree/Tail_Simulations/blob/master/Levene%20VR%20TPR%20sims.R#L168)
 Take the example of real VR = 1.3 and n = 1,000. This simulation generates 500 data points from a normal distribution with mean 0 and variance 1, and another 500 from a distribution with mean 0 and variance 1.3. It then uses the 'car' package to conduct the median-based Levene's test, and the p value is recorded. This is performed ten million times, and the percentage of cases in which the variance difference is significant at the 5% level defines the power. The result was power = 77.94%.
 
 This simulation computes the power to detect a variance difference with real VRs ranging from 1.1 to 1.4 and sample sizes from 20 to 15,000. Higher real VRs and larger samples produce greater power.

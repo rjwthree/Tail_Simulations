@@ -64,7 +64,7 @@ VRDER <- data.frame(t(mapply(FUN = VRSim, s_v, n_v))) # DER given s, nb
 # there are two variants; the complex one accomodates mean differences
 
 
-### simple variant, Figure 3
+### simple variant
 
 # vector for cut-points: CP = 1%, 10%
 CP_v <- rep(x = c(.01, .1)[rep(1:2, rep(59, 2))], times = 3)
@@ -85,7 +85,7 @@ TPRSimple <- function(CP, TPR, TS) {
   TPRs <- numeric(nSims) # empty container for tail proportion ratios (TPRs)
   
   c <<- c + 1 # print global progress and unique info, then print start
-  print(paste0(c, '/', length(CP_v), ', CP = ', 100*CP, '%, TPR = ', TPR, ', TS = ', TS), quote = F)
+  print(paste0(c, '/', length(CP_v), ', CP = ', CP*100, '%, TPR = ', TPR, ', TS = ', TS), quote = F)
   print(paste0('Start at ', Sys.time()), quote = F)
   
   for (i in 1:nSims) { # for each sample
@@ -110,7 +110,7 @@ TPRSimple <- function(CP, TPR, TS) {
 TPRDER.s <- data.frame(t(mapply(FUN = TPRSimple, CP_v, TPR_v, TS_v))) # DER given CP, TPR, TS
 
 
-### complex variant, Table S4
+### complex variant
 
 # vector for cut-points: CP = 1%, 10%
 CP_v <- rep(x = c(.01, .1), times = 275)

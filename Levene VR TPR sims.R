@@ -13,6 +13,7 @@
 # in balanced, normally distributed samples, each of size 'nb' and with
 # st dev ratio 's', where s > 1 and the expected value of an observed VR is s^2
 
+
 # vector for sqrt of real variance ratio (VR): VR = 1.1, 1.2, 1.3, 1.4
 s_v <- sqrt(c(1.1, 1.2, 1.3, 1.4))[rep(x = 1:4, times = rep(x = 72, times = 4))]
 
@@ -89,9 +90,9 @@ TPRSimple <- function(CP, TPR, TS) {
   print(paste0('Start at ', Sys.time()), quote = F)
   
   for (i in 1:nSims) { # for each sample
-    # distribution of n participants varies randomly around equal size of the two groups
-    nb1 <- rbinom(n = 1, size = n, prob = .5)
-    nb2 <- n-nb1
+    # alternating +1 and -1 from half prevents TPRs from occasionally landing at exactly 1 (unrealistic)
+    if (i %% 2 == 1) {nb1 <- n/2 + 1} else (nb1 <- n/2 - 1)
+    nb2 <- n-nb1 # nb2 is the complement
     
     sim_x <- rnorm(n = nb1, sd = 1) # simulate nb1 participants in condition x
     sim_y <- rnorm(n = nb2, sd = s) # simulate nb2 participants in condition y
@@ -137,13 +138,13 @@ TPRSim <- function(CP, TPR, d, TS) {
   TPRs <- numeric(nSims) # empty container for tail proportion ratios (TPRs)
   
   c <<- c + 1 # print global progress and unique info, then print start
-  print(paste0(c, '/', length(d_v), ', CP = ', 100*CP, '%, TPR = ', TPR, ', d = ', d, ', TS = ', TS), quote = F)
+  print(paste0(c, '/', length(d_v), ', CP = ', CP*100, '%, TPR = ', TPR, ', d = ', d, ', TS = ', TS), quote = F)
   print(paste0('Start at ', Sys.time()), quote = F)
   
   for (i in 1:nSims) { # for each sample
-    # distribution of n participants varies randomly around equal representation of the two groups
-    nb1 <- rbinom(n = 1, size = n, prob = .5)
-    nb2 <- n-nb1
+    # alternating +1 and -1 from half prevents TPRs from occasionally landing at exactly 1 (unrealistic)
+    if (i %% 2 == 1) {nb1 <- n/2 + 1} else (nb1 <- n/2 - 1)
+    nb2 <- n-nb1 # nb2 is the complement
     
     sim_x <- rnorm(n = nb1, mean = 0, sd = 1) # simulate nb1 participants in condition x
     sim_y <- rnorm(n = nb2, mean = M, sd = s) # simulate nb2 participants in condition y
@@ -216,7 +217,6 @@ LevPower <- data.frame(t(mapply(FUN = PowerSim, s_v, n_v))) # power given s, n
 # estimates at higher sample sizes once power has exceeded 99.995%; all will round to 100.00%.
 # This threshold is surpassed at about n = 2800 for VR = 1.4, n = 4600 for VR = 1.3,
 # and n = 9500 for VR = 1.2; it is not surpassed for VR = 1.1.
-
 
 
 

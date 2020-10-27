@@ -15,7 +15,7 @@
 
 
 # vector for sqrt of real variance ratio (VR): VR = 1.1, 1.2, 1.3, 1.4
-s_v <- sqrt(c(1.1, 1.2, 1.3, 1.4))[rep(x = 1:4, times = rep(x = 72, times = 4))]
+s_v <- rep(sqrt(c(1.1, 1.2, 1.3, 1.4)), each = 72)
 
 # vector for total number of participants: 20 ≤ n ≤ 3000
 n_v <- rep(c(seq(20, 40, 2), seq(50, 200, 10), seq(220, 500, 20), seq(550, 1000, 50), seq(1100, 3000, 100)), 4)
@@ -68,10 +68,10 @@ VRDER <- data.frame(t(mapply(FUN = VRSim, s_v, n_v))) # DER given s, nb
 ### simple variant
 
 # vector for cut-points: CP = 1%, 10%
-CP_v <- rep(x = c(.01, .1)[rep(1:2, rep(59, 2))], times = 3)
+CP_v <- rep(x = rep(c(.01, .1), each = 59), times = 3)
 
 # vector for real tail proportion ratios: TPR = 1.1, 1.2, 1.5
-TPR_v <- c(1.1, 1.2, 1.5)[rep(x = 1:3, times = rep(x = 118, times = 3))]
+TPR_v <- rep(c(1.1, 1.2, 1.5), each = 118)
 
 # vector for tail sizes: 10 ≤ TS ≤ 1000
 TS_v <- rep(c(seq(10, 100, 5), seq(110, 200, 10), seq(220, 500, 20), seq(525, 750, 25), seq(800, 1000, 50)), 6)
@@ -117,13 +117,13 @@ TPRDER.s <- data.frame(t(mapply(FUN = TPRSimple, CP_v, TPR_v, TS_v))) # DER give
 CP_v <- rep(x = c(.01, .1), times = 275)
 
 # vector for real tail proportion ratios: TPR = 1.1, 1.2, 1.5, 2, 3
-TPR_v <- c(1.1, 1.2, 1.5, 2, 3)[rep(x = 1:5, times = rep(110, 5))]
+TPR_v <- rep(c(1.1, 1.2, 1.5, 2, 3), each = 110)
 
 # vector for Cohen's d values: -.8 ≤ d ≤ .8
-d_v <- rep(x = c(-.8, -.5, -.3, -.1, -.05, 0, .05, .1, .3, .5, .8)[rep(1:11, rep(10, 11))], times = 5)
+d_v <- rep(x = rep(c(-.8, -.5, -.3, -.1, -.05, 0, .05, .1, .3, .5, .8), each = 10), times = 5)
 
 # vector for tail sizes: 10 ≤ TS ≤ 1000
-TS_v <- rep(x = c(10, 50, 100, 500, 1000)[rep(1:5, rep(2, 5))], times = 55)
+TS_v <- rep(x = rep(c(10, 50, 100, 500, 1000), each = 2), times = 55)
 
 c <- 0 # count
 
@@ -176,7 +176,7 @@ TPRDER <- data.frame(t(mapply(FUN = TPRSim, CP_v, TPR_v, d_v, TS_v))) # DER give
 library(car) # Levene's test
 
 # vector for sqrt of real variance ratio (VR): VR = 1.1, 1.2, 1.3, 1.4
-s_v <- sqrt(c(1.1, 1.2, 1.3, 1.4))[rep(x = 1:4, times = rep(x = 150, times = 4))]
+s_v <- rep(sqrt(c(1.1, 1.2, 1.3, 1.4)), each = 150)
 
 # vector for total number of participants: 20 ≤ n ≤ 15000
 n_v <- rep(c(seq(20, 1000, 20), seq(1050, 2000, 50), seq(2100, 5000, 100), seq(5200, 15000, 200)), 4)

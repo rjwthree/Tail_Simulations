@@ -68,7 +68,7 @@ VRDER <- data.frame(t(mapply(FUN = VRSim, s_v, n_v))) # DER given s, nb
 ### simple variant
 
 # vector for cut-points: CP = 1%, 10%
-CP_v <- rep(x = rep(c(.01, .1), each = 59), times = 3)
+CP_v <- rep(c(.01, .1), each = 59, times = 3)
 
 # vector for real tail proportion ratios: TPR = 1.1, 1.2, 1.5
 TPR_v <- rep(c(1.1, 1.2, 1.5), each = 118)
@@ -114,16 +114,16 @@ TPRDER.s <- data.frame(t(mapply(FUN = TPRSimple, CP_v, TPR_v, TS_v))) # DER give
 ### complex variant
 
 # vector for cut-points: CP = 1%, 10%
-CP_v <- rep(x = c(.01, .1), times = 275)
+CP_v <- rep(c(.01, .1), times = 275)
 
 # vector for real tail proportion ratios: TPR = 1.1, 1.2, 1.5, 2, 3
 TPR_v <- rep(c(1.1, 1.2, 1.5, 2, 3), each = 110)
 
 # vector for Cohen's d values: -.8 ≤ d ≤ .8
-d_v <- rep(x = rep(c(-.8, -.5, -.3, -.1, -.05, 0, .05, .1, .3, .5, .8), each = 10), times = 5)
+d_v <- rep(c(-.8, -.5, -.3, -.1, -.05, 0, .05, .1, .3, .5, .8), each = 10, times = 5)
 
 # vector for tail sizes: 10 ≤ TS ≤ 1000
-TS_v <- rep(x = rep(c(10, 50, 100, 500, 1000), each = 2), times = 55)
+TS_v <- rep(c(10, 50, 100, 500, 1000), each = 2, times = 55)
 
 c <- 0 # count
 

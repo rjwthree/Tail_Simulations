@@ -20,7 +20,11 @@ Take the example of real VR = 1.1 and n = 500. This simulation generates 250 dat
 
 Real VRs range from 1.1 to 1.4 and sample sizes from 20 to 3,000. Higher real VRs and larger samples produce fewer observed VRs below 1.
 
-All results are plotted in the file [VR Figure](https://raw.githubusercontent.com/rjwthree/Tail_Simulations/master/VR%20Figure.png).
+All results are plotted in the [VR Figure](https://raw.githubusercontent.com/rjwthree/Tail_Simulations/master/VR%20Figure.png):
+
+<p align="center">
+<img src="https://github.com/rjwthree/Tail_Simulations/blob/master/VR%20Figure.png" width="817" height="500"/>
+</p>
 
 ## [TPR Simulation](https://github.com/rjwthree/Tail_Simulations/blob/master/Levene%20VR%20TPR%20sims.R#L58)
 There are two variants of this simulation. Take an example of the simple variant: real TPR = 1.2, CP = 1%, TS = 100. First, the total group size is calculated: since the cut-point is 1%, the total group must be 100 times as large as the tail, which has size 100: 100 * 100 = 10,000. A [formula](https://github.com/rjwthree/Tail_Simulations/blob/master/TPR_simulation.pdf) then computes the standard deviation ratio (s) needed to produce an expected TPR of 1.2 in the top and bottom 1% of the combined distribution (with no mean difference, the tails are symmetric). About half of the 10,000 data points are generated from a normal distribution with mean 0 and sd 1, and the remainder from a distribution with mean 0 and sd s≈1.0298 (computed above). The quantile function locates the 1st percentile of the combined distribution of observed data, and the TPR below that point is computed and recorded. This is performed ten million times, and the result was DER = 17.98%.

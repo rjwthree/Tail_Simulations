@@ -40,7 +40,7 @@ VRSim <- function(s, n) {
     
     if (i %% nIter == 0) {print(paste0(i, ' at ', Sys.time()), quote = F)} # print updates
   }
-  DER <- length(VRs[VRs < 1])/length(VRs)*100 # DER / percentage of observed VRs < 1
+  DER <- length(VRs[VRs < 1])/length(VRs)*100 # directional error rate
   return(data.frame(DER, VR = s^2, n))
 }
 
@@ -60,8 +60,8 @@ VRDER <- data.frame(t(mapply(FUN = VRSim, s_v, n_v))) # DER given s, nb
 ##########################
 
 # simulate the percentage of observed TPRs < 1 (directional error rate, DER) in normally distributed
-# samples with combined sample size 'n', beyond a cut-point dictated by 'CP', where there is a
-# real tail proportion ratio > 1, 'TPR', which is the expected value of an observed TPR
+# samples with combined sample size 'n', beyond a cut-point dictated by a fraction 'CP', where there
+# is a real tail proportion ratio > 1, 'TPR', which is the expected value of an observed TPR
 # there are two variants; the complex one accomodates mean differences
 
 
@@ -104,7 +104,7 @@ TPRSimple <- function(CP, TPR, TS) {
     
     if (i %% nIter == 0) {print(paste0(i, ' at ', Sys.time()), quote = F)} # print updates
   }
-  DER <- length(TPRs[TPRs < 1])/length(TPRs)*100 # DER / percentage of observed TPRs < 1
+  DER <- length(TPRs[TPRs < 1])/length(TPRs)*100 # directional error rate
   return(data.frame(DER, CP = CP*100, TPR, TS))
 }
 
@@ -156,7 +156,7 @@ TPRSim <- function(CP, TPR, d, TS) {
     
     if (i %% nIter == 0) {print(paste0(i, ' at ', Sys.time()), quote = F)} # print updates
   }
-  DER <- length(TPRs[TPRs < 1])/length(TPRs)*100 # DER / percentage of observed TPRs < 1
+  DER <- length(TPRs[TPRs < 1])/length(TPRs)*100 # directional error rate
   return(data.frame(DER, CP = CP*100, TPR, d, TS))
 }
 

@@ -10,7 +10,7 @@
 #########################
 
 # simulate the percentage of observed VRs < 1 (directional error rate, DER)
-# in balanced, normally distributed samples, each of size 'nb' and with
+# in balanced, normally distributed samples of total size 'n' and with
 # st dev ratio 's', where s > 1 and the expected value of an observed VR is s^2
 
 

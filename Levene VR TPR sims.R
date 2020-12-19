@@ -55,6 +55,62 @@ VRDER <- data.frame(t(mapply(FUN = VRSim, s_v, n_v))) # DER given s, nb
 
 
 
+#############################
+##### Levene Simulation #####
+#############################
+
+# simulate the power of the median-based Levene's test of equality of variances
+# for two independent, normally distributed groups, each of size 'nb' and with st dev ratio 's'
+# this section adapted from code for Fig 1 in Delacre, Lakens, & Leys (2017) doi 10.5334/irsp.82
+
+library(car) # Levene's test
+
+# vector for sqrt of real variance ratio (VR): VR = 1.1, 1.2, 1.3, 1.4
+s_v <- rep(sqrt(c(1.1, 1.2, 1.3, 1.4)), each = 150)
+
+# vector for total number of participants: 20 ≤ n ≤ 15000
+n_v <- rep(c(seq(20, 1000, 20), seq(1050, 2000, 50), seq(2100, 5000, 100), seq(5200, 15000, 200)), 4)
+
+c <- 0 # count
+
+PowerSim <- function(s, n) {
+  nSims <- 10^7 # number of samples
+  nIter <- 10^6 # progress updates will print at multiples of this number
+  nb <- n/2 # number of participants per group
+  
+  condition <- rep(c('x', 'y'), each = nb) # condition labels
+  p <- numeric(nSims) # empty container for Levene's test p values
+  
+  c <<- c + 1 # print global progress and unique info, then print start
+  print(paste0(c, '/', length(s_v), ', VR = ', s^2, ', n = ', n), quote = F)
+  print(paste0('Start at ', Sys.time()), quote = F)
+  
+  for (i in 1:nSims) { # for each sample
+    sim_x <- rnorm(n = nb, sd = 1) # simulate nb participants in condition x
+    sim_y <- rnorm(n = nb, sd = s) # simulate nb participants in condition y
+    
+    d <- data.frame(xy = c(sim_x, sim_y), condition) # dataframe for Levene's test
+    
+    p[i] <- leveneTest(y = d$xy ~ d$condition, data = d)$'Pr(>F)'[1] # Levene's test p value
+    
+    if (i %% nIter == 0) {print(paste0(i, ' at ', Sys.time()), quote = F)} # print updates
+  }
+  power <- sum(p < .05)/nSims*100 # calculate power as a percentage
+  return(data.frame(Power = power, VR = s^2, n))
+}
+
+LevPower <- data.frame(t(mapply(FUN = PowerSim, s_v, n_v))) # power given s, n
+
+
+# Caveat for Levene Sim
+# If four significant digits are desired (as here), it is not necessary to compute power
+# estimates at higher sample sizes once power has exceeded 99.995%; all will round to 100.00%.
+# This threshold is surpassed at about n = 2800 for VR = 1.4, n = 4600 for VR = 1.3,
+# and n = 9500 for VR = 1.2; it is not surpassed for VR = 1.1.
+
+
+
+
 ##########################
 ##### TPR Simulation #####
 ##########################
@@ -165,58 +221,7 @@ TPRDER <- data.frame(t(mapply(FUN = TPRSim, CP_v, TPR_v, d_v, TS_v))) # DER give
 
 
 
-#############################
-##### Levene Simulation #####
-#############################
 
-# simulate the power of the median-based Levene's test of equality of variances
-# for two independent, normally distributed groups, each of size 'nb' and with st dev ratio 's'
-# this section adapted from code for Fig 1 in Delacre, Lakens, & Leys (2017) doi 10.5334/irsp.82
-
-library(car) # Levene's test
-
-# vector for sqrt of real variance ratio (VR): VR = 1.1, 1.2, 1.3, 1.4
-s_v <- rep(sqrt(c(1.1, 1.2, 1.3, 1.4)), each = 150)
-
-# vector for total number of participants: 20 ≤ n ≤ 15000
-n_v <- rep(c(seq(20, 1000, 20), seq(1050, 2000, 50), seq(2100, 5000, 100), seq(5200, 15000, 200)), 4)
-
-c <- 0 # count
-
-PowerSim <- function(s, n) {
-  nSims <- 10^7 # number of samples
-  nIter <- 10^6 # progress updates will print at multiples of this number
-  nb <- n/2 # number of participants per group
-  
-  condition <- rep(c('x', 'y'), each = nb) # condition labels
-  p <- numeric(nSims) # empty container for Levene's test p values
-  
-  c <<- c + 1 # print global progress and unique info, then print start
-  print(paste0(c, '/', length(s_v), ', VR = ', s^2, ', n = ', n), quote = F)
-  print(paste0('Start at ', Sys.time()), quote = F)
-  
-  for (i in 1:nSims) { # for each sample
-    sim_x <- rnorm(n = nb, sd = 1) # simulate nb participants in condition x
-    sim_y <- rnorm(n = nb, sd = s) # simulate nb participants in condition y
-    
-    d <- data.frame(xy = c(sim_x, sim_y), condition) # dataframe for Levene's test
-    
-    p[i] <- leveneTest(y = d$xy ~ d$condition, data = d)$'Pr(>F)'[1] # Levene's test p value
-    
-    if (i %% nIter == 0) {print(paste0(i, ' at ', Sys.time()), quote = F)} # print updates
-  }
-  power <- sum(p < .05)/nSims*100 # calculate power as a percentage
-  return(data.frame(Power = power, VR = s^2, n))
-}
-
-LevPower <- data.frame(t(mapply(FUN = PowerSim, s_v, n_v))) # power given s, n
-
-
-# Caveat for Levene Sim
-# If four significant digits are desired (as here), it is not necessary to compute power
-# estimates at higher sample sizes once power has exceeded 99.995%; all will round to 100.00%.
-# This threshold is surpassed at about n = 2800 for VR = 1.4, n = 4600 for VR = 1.3,
-# and n = 9500 for VR = 1.2; it is not surpassed for VR = 1.1.
 
 
 

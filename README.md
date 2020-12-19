@@ -15,6 +15,8 @@ Real VR / Real TPR - The expected value of an observed VR/TPR when sampling from
 
 Directional Error Rate (DER) - A ratio of 1 indicates equality. Real VRs/TPRs in these simulations are always greater than 1, so observed VRs/TPRs less than 1 are qualitatively incorrect. The DER is the percentage of observed VRs/TPRs less than 1.
 
+&nbsp;
+
 ## [VR Simulation](https://github.com/rjwthree/Tail_Simulations/blob/master/Levene%20VR%20TPR%20sims.R#L9)
 Take the example of real variance ratio (VR) = 1.1 and n = 500. This simulation generates 250 data points from a normal distribution with mean 0 and variance 1, and another 250 from a distribution with mean 0 and variance 1.1. It then computes and records the observed VR. This is performed ten million times, and the result was DER = 22.63%. That is, 22.63% of observed VRs fell below 1, compared to a random baseline of 50%.
 
@@ -25,6 +27,8 @@ All results are plotted in the [VR Figure](https://raw.githubusercontent.com/rjw
 <p align="center">
 <img src="https://github.com/rjwthree/Tail_Simulations/blob/master/VR%20Figure.png"/>
 </p>
+
+&nbsp;
 
 ## [Levene Simulation](https://github.com/rjwthree/Tail_Simulations/blob/master/Levene%20VR%20TPR%20sims.R#L168)
 Take the example of real VR = 1.3 and n = 1,000. This simulation generates 500 data points from a normal distribution with mean 0 and variance 1, and another 500 from a distribution with mean 0 and variance 1.3. It then uses the 'car' package to conduct the median-based Levene's test, and the p value is recorded. This is performed ten million times, and the percentage of cases in which the variance difference is significant at the 5% level defines the power. The result was power = 77.94%.
@@ -38,6 +42,8 @@ Results from sample sizes up to 1,000 are plotted in the [Levene 1000 Figure](ht
 </p>
 
 [Plot for samples up to 15,000 forthcoming]
+
+&nbsp;
 
 ## [TPR Simulation](https://github.com/rjwthree/Tail_Simulations/blob/master/Levene%20VR%20TPR%20sims.R#L58)
 There are two variants of this simulation. Take an example of the simple variant: real TPR = 1.2, cut-point (CP) = 1%, tail size (TS) = 100. First, the total group size is calculated: since the cut-point is 1%, the total group must be 100 times as large as the tail, which has size 100: 100 * 100 = 10,000. A [formula](https://github.com/rjwthree/Tail_Simulations/blob/master/TPR_simulation.pdf) then computes the standard deviation ratio (s) needed to produce an expected TPR of 1.2 in the top and bottom 1% of the combined distribution (with no mean difference, the tails are symmetric). About half of the 10,000 data points are generated from a normal distribution with mean 0 and sd 1, and the remainder from a distribution with mean 0 and sd s≈1.0298. The quantile function locates the 1st percentile of the combined distribution of observed data, and the TPR below that point is computed and recorded. This is performed ten million times, and the result was DER = 17.98%.

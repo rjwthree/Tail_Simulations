@@ -160,7 +160,7 @@ TPRSimple <- function(CP, TPR, TS) {
     
     if (i %% nIter == 0) {print(paste0(i, ' at ', Sys.time()), quote = F)} # print updates
   }
-  DER <- length(TPRs[TPRs < 1])/length(TPRs)*100 # directional error rate
+  DER <- length(TPRs[TPRs < 1])/nSims*100 # directional error rate
   return(data.frame(DER, CP = CP*100, TPR, TS))
 }
 
@@ -212,7 +212,7 @@ TPRSim <- function(CP, TPR, d, TS) {
     
     if (i %% nIter == 0) {print(paste0(i, ' at ', Sys.time()), quote = F)} # print updates
   }
-  DER <- length(TPRs[TPRs < 1])/length(TPRs)*100 # directional error rate
+  DER <- length(TPRs[TPRs < 1])/nSims*100 # directional error rate
   return(data.frame(DER, CP = CP*100, TPR, d, TS))
 }
 

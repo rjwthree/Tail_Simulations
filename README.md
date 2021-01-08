@@ -41,6 +41,8 @@ Results from sample sizes up to 1,000 are plotted in the [Levene 1000 Figure](ht
 <img src="https://github.com/rjwthree/Tail_Simulations/blob/master/Levene%201000%20Figure.png"/>
 </p>
 
+And all results are plotted [here](https://raw.githubusercontent.com/rjwthree/Tail_Simulations/master/Levene%2015000%20figure.png):
+
 <p align="center">
 <img src="https://github.com/rjwthree/Tail_Simulations/blob/master/Levene%2015000%20figure.png"/>
 </p>

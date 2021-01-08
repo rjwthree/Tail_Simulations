@@ -35,11 +35,13 @@ Take the example of real VR = 1.3 and n = 1,000. This simulation generates 500 d
 
 This simulation computes the power to detect a variance difference with real VRs ranging from 1.1 to 1.4 and sample sizes from 20 to 15,000. Higher real VRs and larger samples produce greater power.
 
-Results from sample sizes up to 1,000 are plotted in the [Levene 1000 Figure](https://raw.githubusercontent.com/rjwthree/Tail_Simulations/master/Levene%201000%20Figure.png):
+Results from sample sizes up to 1,000 are plotted [here](https://raw.githubusercontent.com/rjwthree/Tail_Simulations/master/Levene%201000%20Figure.png):
 
 <p align="center">
 <img src="https://github.com/rjwthree/Tail_Simulations/blob/master/Levene%201000%20Figure.png"/>
 </p>
+
+&nbsp;
 
 And all results are plotted [here](https://raw.githubusercontent.com/rjwthree/Tail_Simulations/master/Levene%2015000%20figure.png):
 
@@ -56,7 +58,7 @@ The simple variant uses real TPRs of 1.1, 1.2, and 1.5; cut-points of 1% and 10%
 
 See the file [TPR_Simulation.pdf](https://github.com/rjwthree/Tail_Simulations/blob/master/TPR_simulation.pdf) for an explanation of the formulas for the standard deviation ratio.
 
-Results from the simple variant are plotted in the [TPR Figure](https://raw.githubusercontent.com/rjwthree/Tail_Simulations/master/TPR%20Figure.png):
+Results from the simple variant are plotted [here](https://raw.githubusercontent.com/rjwthree/Tail_Simulations/master/TPR%20Figure.png):
 
 <p align="center">
 <img src="https://github.com/rjwthree/Tail_Simulations/blob/master/TPR%20Figure.png"/>

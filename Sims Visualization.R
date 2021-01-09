@@ -131,6 +131,7 @@ ggplot(data, aes(x = N, y = DER, group = interaction(TPR, CP))) +
   theme(text = element_text(family = 'Optima', size = 14),
         panel.background = element_rect(fill = alpha('#45BCFF', .15)),
         plot.title = element_text(hjust = .5),
+        axis.title.x = element_text(margin = margin(t = 10)),
         legend.position = 'bottom',
         plot.caption = element_text(size = 9.5, hjust = .5, margin = margin(t = 10))) +
   labs(x = 'Tail Size', y = 'Directional Error Rate (%)',

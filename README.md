@@ -1,5 +1,5 @@
 # Simulations of Tails and Variability
-Researchers frequently underestimate the sample sizes needed to reliably detect typical group differences in variability and tail behavior. [Three simulation studies](https://github.com/rjwthree/Tail_Simulations/blob/master/Levene%20VR%20TPR%20sims.R) are implemented here to emphasize and delineate this issue. The code to download the output and create all of the plots below is [here](https://github.com/rjwthree/Tail_Simulations/blob/master/Levene%20VR%20TPR%20sims%20Visualization.R).
+Researchers frequently underestimate the sample sizes needed to reliably detect typical group differences in variability and tail behavior. [Three simulation studies](https://github.com/rjwthree/Tail_Simulations/blob/master/Simulations.R) are implemented here to emphasize and delineate this issue. The code to download the output and create all of the plots below is [here](https://github.com/rjwthree/Tail_Simulations/blob/master/Sims%20Visualization.R).
 
 ### Terms and acronyms
 
@@ -17,7 +17,7 @@ Directional Error Rate (DER) - A ratio of 1 indicates equality. Real VRs/TPRs in
 
 &nbsp;
 
-## [VR Simulation](https://github.com/rjwthree/Tail_Simulations/blob/master/Levene%20VR%20TPR%20sims.R#L9)
+## [VR Simulation](https://github.com/rjwthree/Tail_Simulations/blob/master/Simulations.R#L9)
 Take the example of real variance ratio (VR) = 1.1 and n = 500. This simulation generates 250 data points from a normal distribution with mean 0 and variance 1, and another 250 from a distribution with mean 0 and variance 1.1. It then computes and records the observed VR. This is performed ten million times, and the result was DER = 22.63%. That is, 22.63% of observed VRs fell below 1, compared to a random baseline of 50%.
 
 Real VRs range from 1.1 to 1.4 and sample sizes from 20 to 3,000. Higher real VRs and larger samples produce fewer observed VRs below 1.
@@ -30,7 +30,7 @@ All results are plotted in the [VR Figure](https://raw.githubusercontent.com/rjw
 
 &nbsp;
 
-## [Levene Simulation](https://github.com/rjwthree/Tail_Simulations/blob/master/Levene%20VR%20TPR%20sims.R#L168)
+## [Levene Simulation](https://github.com/rjwthree/Tail_Simulations/blob/master/Simulations.R#L59)
 Take the example of real VR = 1.3 and n = 1,000. This simulation generates 500 data points from a normal distribution with mean 0 and variance 1, and another 500 from a distribution with mean 0 and variance 1.3. It then uses the 'car' package to conduct the median-based Levene's test, and the p value is recorded. This is performed ten million times, and the percentage of cases in which the variance difference is significant at the 5% level defines the power. The result was power = 77.94%.
 
 This simulation computes the power to detect a variance difference with real VRs ranging from 1.1 to 1.4 and sample sizes from 20 to 15,000. Higher real VRs and larger samples produce greater power.
@@ -51,7 +51,7 @@ And all results are plotted [here](https://raw.githubusercontent.com/rjwthree/Ta
 
 &nbsp;
 
-## [TPR Simulation](https://github.com/rjwthree/Tail_Simulations/blob/master/Levene%20VR%20TPR%20sims.R#L58)
+## [TPR Simulation](https://github.com/rjwthree/Tail_Simulations/blob/master/Simulations.R#L115)
 There are two variants of this simulation. Take an example of the simple variant: real TPR = 1.2, cut-point (CP) = 1%, tail size (TS) = 100. First, the total group size is calculated: since the cut-point is 1%, the total group must be 100 times as large as the tail, which has size 100: 100 * 100 = 10,000. A [formula](https://github.com/rjwthree/Tail_Simulations/blob/master/TPR_simulation.pdf) then computes the standard deviation ratio (s) needed to produce an expected TPR of 1.2 in the top and bottom 1% of the combined distribution (with no mean difference, the tails are symmetric). About half of the 10,000 data points are generated from a normal distribution with mean 0 and sd 1, and the remainder from a distribution with mean 0 and sd s≈1.0298. The quantile function locates the 1st percentile of the combined distribution of observed data, and the TPR below that point is computed and recorded. This is performed ten million times, and the result was DER = 17.98%.
 
 The simple variant uses real TPRs of 1.1, 1.2, and 1.5; cut-points of 1% and 10%; and tail sizes between 10 and 1,000. The complex variant includes mean differences, expressed in terms of Cohen's _d_, and it experiments with higher real TPRs of 2 and 3. It has a more complicated [formula](https://github.com/rjwthree/Tail_Simulations/blob/master/TPR_simulation.pdf) for the standard deviation ratio. Higher real TPRs and larger tail sizes produce fewer observed TPRs below 1.

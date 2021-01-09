@@ -12,7 +12,7 @@ F4 <- read.csv(url('https://raw.githubusercontent.com/rjwthree/Tail_Simulations/
 
 
 
-# Figure 2a
+# Levene 15000 Figure
 cap <- paste0('The median-based Levene\'s test was simulated on balanced samples ',
               'ranging in size from 20 to 15,000 for variance ratios (VRs) from ',
               '1.10 to 1.40.')
@@ -21,7 +21,7 @@ data <- data.frame(N = F2[,1],
                    Power = c(F2[,2], F2[,3], F2[,4], F2[,5]),
                    VR = rep(c('1.10', '1.20', '1.30', '1.40'), each = 140))
 
-tiff(filename = 'Figure 2a.png', width = 10.5, height = 9,
+tiff(filename = 'Levene 15000 Figure.png', width = 10.5, height = 9,
      units = 'in', pointsize = 14, bg = 'white', res = 300) # image file
 
 ggplot(data, aes(x = N, y = Power, group = VR)) +
@@ -45,7 +45,7 @@ dev.off() # write image to working directory
 
 
 
-# Figure 2b
+# Levene 1000 Figure
 cap <- paste0('The median-based Levene\'s test was simulated on balanced samples ',
               'ranging in size from 20 to 1,000 for variance ratios (VRs) from ',
               '1.10 to 1.40.')
@@ -54,7 +54,7 @@ data <- data.frame(N = F2[1:50,1],
                    Power = c(F2[1:50,2], F2[1:50,3], F2[1:50,4], F2[1:50,5]),
                    VR = rep(c('1.10', '1.20', '1.30', '1.40'), each = 50))
 
-tiff(filename = 'Figure 2b.png', width = 10.5, height = 9,
+tiff(filename = 'Levene 1000 Figure.png', width = 10.5, height = 9,
      units = 'in', pointsize = 14, bg = 'white', res = 300) # image file
 
 ggplot(data, aes(x = N, y = Power, group = VR)) +
@@ -77,7 +77,7 @@ dev.off() # write image to working directory
 
 
 
-# Figure 3
+# VR Figure
 cap <- paste0('The directional error rate (i.e., rate of observed VRs < 1) ',
               'is plotted for different real variance ratios (VRs) in balanced ',
               'samples ranging in size from 20 to 3,000.')
@@ -86,7 +86,7 @@ data <- data.frame(N = F3[,1],
                    DER = c(F3[,2], F3[,3], F3[,4], F3[,5]),
                    VR = rep(c('1.10', '1.20', '1.30', '1.40'), each = 72))
 
-tiff(filename = 'Figure 3.png', width = 10.5, height = 9,
+tiff(filename = 'VR Figure.png', width = 10.5, height = 9,
      units = 'in', pointsize = 14, bg = 'white', res = 300) # image file
 
 ggplot(data, aes(x = N, y = DER, group = VR)) +
@@ -110,7 +110,7 @@ dev.off() # write image to working directory
 
 
 
-# Figure 4
+# TPR Figure
 cap <- paste0('The directional error rate (i.e., rate of observed TPRs < 1) ',
               'is plotted for real tail proportion ratios (TPRs) of 1.10, 1.20, ',
               'and 1.50 with cut-points (CPs) of \n1% and 10% and tail sizes ranging ',
@@ -122,7 +122,7 @@ data <- data.frame(N = F4[,1],
                    TPR = rep(c('1.10', '1.20', '1.50'), each = 118),
                    CP = rep(c('1%', '10%'), each = 59, 3))
 
-tiff(filename = 'Figure 4.png', width = 10.5, height = 9,
+tiff(filename = 'TPR Figure.png', width = 10.5, height = 9,
      units = 'in', pointsize = 14, bg = 'white', res = 300) # image file
 
 ggplot(data, aes(x = N, y = DER, group = interaction(TPR, CP))) +

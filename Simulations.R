@@ -26,7 +26,7 @@ VRSim <- function(s, n) {
   nSims <- 10^7 # number of samples
   nIter <- 10^6 # progress updates will print at multiples of this number
   nb <- n/2 # number of participants per group
-  VRs <- numeric(nSims) # empty container for variance ratios (VRs)
+  OVRs <- numeric(nSims) # empty container for observed variance ratios
   
   c <<- c + 1 # print global progress and unique info, then print start
   print(paste0(c, '/', length(s_v), ', VR = ', s^2, ', n = ', n), quote = F)
@@ -36,11 +36,11 @@ VRSim <- function(s, n) {
     sim_x <- rnorm(n = nb, sd = 1) # simulate nb participants in condition x
     sim_y <- rnorm(n = nb, sd = s) # simulate nb participants in condition y
     
-    VRs[i] <- var(sim_y)/var(sim_x) # observed VR
+    OVRs[i] <- var(sim_y)/var(sim_x) # observed VR
     
     if (i %% nIter == 0) {print(paste0(i, ' at ', Sys.time()), quote = F)} # print updates
   }
-  DER <- length(VRs[VRs < 1])/length(VRs)*100 # directional error rate
+  DER <- sum(OVRs < 1)/length(OVRs)*100 # directional error rate
   return(data.frame(DER, VR = s^2, n))
 }
 
@@ -139,7 +139,7 @@ TPRSimple <- function(CP, TPR, TS) {
   nIter <- 10^6 # progress updates will print at multiples of this number
   n <- TS/CP # total group size
   s <- qnorm(2*CP/(TPR+1))/qnorm(2*CP*TPR/(TPR+1)) # st dev ratio for a given CP and TPR
-  TPRs <- numeric(nSims) # empty container for tail proportion ratios (TPRs)
+  OTPRs <- numeric(nSims) # empty container for observed tail proportion ratios
   
   c <<- c + 1 # print global progress and unique info, then print start
   print(paste0(c, '/', length(CP_v), ', CP = ', CP*100, '%, TPR = ', TPR, ', TS = ', TS), quote = F)
@@ -156,11 +156,11 @@ TPRSimple <- function(CP, TPR, TS) {
     # location of the selected quantile in the left tail of the mixed distribution
     tail <- quantile(x = c(sim_x, sim_y), probs = CP)
     
-    TPRs[i] <- length(sim_y[sim_y < tail])/nb2/(length(sim_x[sim_x < tail])/nb1) # observed TPR
+    OTPRs[i] <- sum(sim_y < tail)/nb2/(sum(sim_x < tail)/nb1) # observed TPR
     
     if (i %% nIter == 0) {print(paste0(i, ' at ', Sys.time()), quote = F)} # print updates
   }
-  DER <- length(TPRs[TPRs < 1])/nSims*100 # directional error rate
+  DER <- sum(OTPRs < 1)/nSims*100 # directional error rate
   return(data.frame(DER, CP = CP*100, TPR, TS))
 }
 
@@ -191,7 +191,7 @@ TPRSim <- function(CP, TPR, d, TS) {
   b <- qnorm(2*CP*TPR/(TPR+1))
   s <- (a*b-d*sqrt(a^2+b^2-d^2))/(b^2-d^2) # st dev ratio for a given CP, TPR, d
   M <- d*sqrt(s^2+1) # raw mean difference
-  TPRs <- numeric(nSims) # empty container for tail proportion ratios (TPRs)
+  OTPRs <- numeric(nSims) # empty container for observed tail proportion ratios
   
   c <<- c + 1 # print global progress and unique info, then print start
   print(paste0(c, '/', length(d_v), ', CP = ', CP*100, '%, TPR = ', TPR, ', d = ', d, ', TS = ', TS), quote = F)
@@ -208,11 +208,11 @@ TPRSim <- function(CP, TPR, d, TS) {
     # location of the selected quantile in the right tail of the mixed distribution
     tail <- quantile(x = c(sim_x, sim_y), probs = 1-CP)
     
-    TPRs[i] <- length(sim_y[sim_y > tail])/nb2/(length(sim_x[sim_x > tail])/nb1) # observed TPR
+    OTPRs[i] <- sum(sim_y > tail)/nb2/(sum(sim_x > tail)/nb1) # observed TPR
     
     if (i %% nIter == 0) {print(paste0(i, ' at ', Sys.time()), quote = F)} # print updates
   }
-  DER <- length(TPRs[TPRs < 1])/nSims*100 # directional error rate
+  DER <- sum(OTPRs < 1)/nSims*100 # directional error rate
   return(data.frame(DER, CP = CP*100, TPR, d, TS))
 }
 

@@ -112,21 +112,21 @@ dev.off() # write image to working directory
 
 # TPR Figure
 cap <- paste0('The directional error rate (i.e., rate of observed TPRs < 1) ',
-              'is plotted for real tail proportion ratios (TPRs) of 1.10, 1.20, ',
-              'and 1.50 with cut-points (CPs) of \n1% and 10% and tail sizes ranging ',
-              'from 10 to 1,000. Each real TPR has similar outputs even with ',
-              'different CPs, as emphasized by the three color pairs.')
+              'is plotted for tail fractions (TFs) of 1% and 10% and real tail ',
+              'proportion ratios (TPRs) of \n1.10, 1.20, and 1.50. Tail sizes ',
+              'range from 10 to 1,000. Each real TPR has similar outputs even ',
+              'with different TFs, as emphasized by the three color pairs.')
 
 data <- data.frame(N = F4[,1],
                    DER = c(F4[,2], F4[,3], F4[,4], F4[,5], F4[,6], F4[,7]),
                    TPR = rep(c('1.10', '1.20', '1.50'), each = 118),
-                   CP = rep(c('1%', '10%'), each = 59, 3))
+                   TF = rep(c('1%', '10%'), each = 59, 3))
 
-tiff(filename = 'TPR Figure.png', width = 10.5, height = 9,
+tiff(filename = 'Figure 4.png', width = 10.5, height = 9,
      units = 'in', pointsize = 14, bg = 'white', res = 300) # image file
 
-ggplot(data, aes(x = N, y = DER, group = interaction(TPR, CP))) +
-  geom_line(aes(colour = TPR, linetype = CP), size = .4) +
+ggplot(data, aes(x = N, y = DER, group = interaction(TPR, TF))) +
+  geom_line(aes(colour = TPR, linetype = TF), size = .4) +
   ggtitle('Directional Error Rate of Observed TPRs') +
   theme(text = element_text(family = 'Optima', size = 14),
         panel.background = element_rect(fill = alpha('#45BCFF', .15)),

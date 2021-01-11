@@ -122,7 +122,7 @@ data <- data.frame(N = F4[,1],
                    TPR = rep(c('1.10', '1.20', '1.50'), each = 118),
                    TF = rep(c('1%', '10%'), each = 59, 3))
 
-tiff(filename = 'Figure 4.png', width = 10.5, height = 9,
+tiff(filename = 'TPR Figure.png', width = 10.5, height = 9,
      units = 'in', pointsize = 14, bg = 'white', res = 300) # image file
 
 ggplot(data, aes(x = N, y = DER, group = interaction(TPR, TF))) +

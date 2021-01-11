@@ -115,16 +115,16 @@ LevPower <- data.frame(t(mapply(FUN = PowerSim, s_v, n_v))) # power given s, n
 ##### TPR Simulation #####
 ##########################
 
-# simulate the percentage of observed TPRs < 1 (directional error rate, DER) in normally distributed
-# samples with combined sample size 'n', beyond a cut-point dictated by a fraction 'CP', where there
-# is a real tail proportion ratio > 1, 'TPR', which is the expected value of an observed TPR
+# simulate the percentage of observed TPRs < 1 (directional error rate, DER) in normally
+# distributed samples with combined sample size 'n', beyond a cut-point dictated by a fraction 'TF'
+# there is a real tail proportion ratio > 1, 'TPR', which is the expected value of an observed TPR
 # there are two variants; the complex one accomodates mean differences
 
 
 ### simple variant
 
-# vector for cut-points: CP = 1%, 10%
-CP_v <- rep(c(.01, .1), each = 59, times = 3)
+# vector for tail fractions: TF = 1%, 10%
+TF_v <- rep(c(.01, .1), each = 59, times = 3)
 
 # vector for real tail proportion ratios: TPR = 1.1, 1.2, 1.5
 TPR_v <- rep(c(1.1, 1.2, 1.5), each = 118)
@@ -134,15 +134,15 @@ TS_v <- rep(c(seq(10, 100, 5), seq(110, 200, 10), seq(220, 500, 20), seq(525, 75
 
 c <- 0 # count
 
-TPRSimple <- function(CP, TPR, TS) {
+TPRSimple <- function(TF, TPR, TS) {
   nSims <- 10^7 # number of samples
   nIter <- 10^6 # progress updates will print at multiples of this number
-  n <- TS/CP # total group size
-  s <- qnorm(2*CP/(TPR+1))/qnorm(2*CP*TPR/(TPR+1)) # st dev ratio for a given CP and TPR
+  n <- TS/TF # total group size
+  s <- qnorm(2*TF/(TPR+1))/qnorm(2*TF*TPR/(TPR+1)) # st dev ratio for a given TF and TPR
   OTPRs <- numeric(nSims) # empty container for observed tail proportion ratios
   
   c <<- c + 1 # print global progress and unique info, then print start
-  print(paste0(c, '/', length(CP_v), ', CP = ', CP*100, '%, TPR = ', TPR, ', TS = ', TS), quote = F)
+  print(paste0(c, '/', length(TF_v), ', TF = ', TF*100, '%, TPR = ', TPR, ', TS = ', TS), quote = F)
   print(paste0('Start at ', Sys.time()), quote = F)
   
   for (i in 1:nSims) { # for each sample
@@ -154,23 +154,23 @@ TPRSimple <- function(CP, TPR, TS) {
     sim_y <- rnorm(n = nb2, sd = s) # simulate nb2 participants in condition y
     
     # location of the selected quantile in the left tail of the mixed distribution
-    tail <- quantile(x = c(sim_x, sim_y), probs = CP)
+    tail <- quantile(x = c(sim_x, sim_y), probs = TF)
     
     OTPRs[i] <- sum(sim_y < tail)/nb2/(sum(sim_x < tail)/nb1) # observed TPR
     
     if (i %% nIter == 0) {print(paste0(i, ' at ', Sys.time()), quote = F)} # print updates
   }
   DER <- sum(OTPRs < 1)/nSims*100 # directional error rate
-  return(data.frame(DER, CP = CP*100, TPR, TS))
+  return(data.frame(DER, TF = TF*100, TPR, TS))
 }
 
-TPRDER.s <- data.frame(t(mapply(FUN = TPRSimple, CP_v, TPR_v, TS_v))) # DER given CP, TPR, TS
+TPRDER.s <- data.frame(t(mapply(FUN = TPRSimple, TF_v, TPR_v, TS_v))) # DER given TF, TPR, TS
 
 
 ### complex variant
 
-# vector for cut-points: CP = 1%, 10%
-CP_v <- rep(c(.01, .1), times = 275)
+# vector for tail fractions: TF = 1%, 10%
+TF_v <- rep(c(.01, .1), times = 275)
 
 # vector for real tail proportion ratios: TPR = 1.1, 1.2, 1.5, 2, 3
 TPR_v <- rep(c(1.1, 1.2, 1.5, 2, 3), each = 110)
@@ -183,18 +183,18 @@ TS_v <- rep(c(10, 50, 100, 500, 1000), each = 2, times = 55)
 
 c <- 0 # count
 
-TPRSim <- function(CP, TPR, d, TS) {
+TPRSim <- function(TF, TPR, d, TS) {
   nSims <- 10^7 # number of samples
   nIter <- 10^6 # progress updates will print at multiples of this number
-  n <- TS/CP # total group size
-  a <- qnorm(2*CP/(TPR+1))
-  b <- qnorm(2*CP*TPR/(TPR+1))
-  s <- (a*b-d*sqrt(a^2+b^2-d^2))/(b^2-d^2) # st dev ratio for a given CP, TPR, d
+  n <- TS/TF # total group size
+  a <- qnorm(2*TF/(TPR+1))
+  b <- qnorm(2*TF*TPR/(TPR+1))
+  s <- (a*b-d*sqrt(a^2+b^2-d^2))/(b^2-d^2) # st dev ratio for a given TF, TPR, d
   M <- d*sqrt(s^2+1) # raw mean difference
   OTPRs <- numeric(nSims) # empty container for observed tail proportion ratios
   
   c <<- c + 1 # print global progress and unique info, then print start
-  print(paste0(c, '/', length(d_v), ', CP = ', CP*100, '%, TPR = ', TPR, ', d = ', d, ', TS = ', TS), quote = F)
+  print(paste0(c, '/', length(d_v), ', TF = ', TF*100, '%, TPR = ', TPR, ', d = ', d, ', TS = ', TS), quote = F)
   print(paste0('Start at ', Sys.time()), quote = F)
   
   for (i in 1:nSims) { # for each sample
@@ -206,17 +206,17 @@ TPRSim <- function(CP, TPR, d, TS) {
     sim_y <- rnorm(n = nb2, mean = M, sd = s) # simulate nb2 participants in condition y
     
     # location of the selected quantile in the right tail of the mixed distribution
-    tail <- quantile(x = c(sim_x, sim_y), probs = 1-CP)
+    tail <- quantile(x = c(sim_x, sim_y), probs = 1-TF)
     
     OTPRs[i] <- sum(sim_y > tail)/nb2/(sum(sim_x > tail)/nb1) # observed TPR
     
     if (i %% nIter == 0) {print(paste0(i, ' at ', Sys.time()), quote = F)} # print updates
   }
   DER <- sum(OTPRs < 1)/nSims*100 # directional error rate
-  return(data.frame(DER, CP = CP*100, TPR, d, TS))
+  return(data.frame(DER, TF = TF*100, TPR, d, TS))
 }
 
-TPRDER <- data.frame(t(mapply(FUN = TPRSim, CP_v, TPR_v, d_v, TS_v))) # DER given CP, TPR, d, TS
+TPRDER <- data.frame(t(mapply(FUN = TPRSim, TF_v, TPR_v, d_v, TS_v))) # DER given TF, TPR, d, TS
 
 
 

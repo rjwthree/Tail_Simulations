@@ -9,7 +9,7 @@ Variance Ratio (VR) - The ratio of variance in one group to variance in another 
 
 Tail Proportion Ratio (TPR) - A relational measure of density beyond a given cut-point in a distribution, which compares the proportions of two distributions above or below the cut-point in the form of a ratio. The location of the cut-point is defined by the combined distribution (e.g., the cut-point is at the 90th percentile and the tail contains all data above the 90th percentile).
 
-Tail Size (TS) - The number of data points beyond a given cut-point. For instance, the tail size beyond a 10% cut-point in a sample of 300 is 30. Cut-point locations in the TPR simulation are specified by identifying (1) the left or right tail and (2) the tail fraction (TF), either 1% or 10%.
+Tail Size (TS) - The number of data points beyond a given cut-point. For instance, the tail size beyond a 10% cut-point in a sample of 300 is 30. Cut-point locations in the TPR simulation are identified by specifying (1) the left or right tail and (2) the tail fraction (TF), either 1% or 10%.
 
 Real VR / Real TPR - The expected value of an observed VR/TPR when sampling from a given pair of distributions.
 

@@ -25,7 +25,7 @@ Real VRs range from 1.1 to 1.4 and sample sizes from 20 to 3,000. Higher real VR
 All results are plotted in the [VR Figure](https://raw.githubusercontent.com/rjwthree/Tail_Simulations/master/VR%20Figure.png):
 
 <p align="center">
-<img src="https://github.com/rjwthree/Tail_Simulations/blob/master/VR%20Figure.png"/>
+<img src="https://github.com/rjwthree/Tail_Simulations/blob/master/VR%20Figure.png" width="700" height="600"/>
 </p>
 
 &nbsp;
@@ -38,7 +38,7 @@ This simulation computes the power to detect a variance difference with real VRs
 Results from sample sizes up to 1,000 are plotted [here](https://raw.githubusercontent.com/rjwthree/Tail_Simulations/master/Levene%201000%20Figure.png):
 
 <p align="center">
-<img src="https://github.com/rjwthree/Tail_Simulations/blob/master/Levene%201000%20Figure.png"/>
+<img src="https://github.com/rjwthree/Tail_Simulations/blob/master/Levene%201000%20Figure.png" width="700" height="600"/>
 </p>
 
 &nbsp;
@@ -46,7 +46,7 @@ Results from sample sizes up to 1,000 are plotted [here](https://raw.githubuserc
 And all results are plotted [here](https://raw.githubusercontent.com/rjwthree/Tail_Simulations/master/Levene%2015000%20figure.png):
 
 <p align="center">
-<img src="https://github.com/rjwthree/Tail_Simulations/blob/master/Levene%2015000%20figure.png"/>
+<img src="https://github.com/rjwthree/Tail_Simulations/blob/master/Levene%2015000%20figure.png" width="700" height="600"/>
 </p>
 
 &nbsp;
@@ -61,5 +61,5 @@ See the file [TPR_Simulation.pdf](https://github.com/rjwthree/Tail_Simulations/b
 Results from the simple variant are plotted [here](https://raw.githubusercontent.com/rjwthree/Tail_Simulations/master/TPR%20Figure.png):
 
 <p align="center">
-<img src="https://github.com/rjwthree/Tail_Simulations/blob/master/TPR%20Figure.png"/>
+<img src="https://github.com/rjwthree/Tail_Simulations/blob/master/TPR%20Figure.png" width="700" height="600"/>
 </p>

@@ -190,7 +190,7 @@ TPRSim <- function(TF, TPR, d, TS) {
   a <- qnorm(2*TF/(TPR+1))
   b <- qnorm(2*TF*TPR/(TPR+1))
   s <- (a*b-d*sqrt(a^2+b^2-d^2))/(b^2-d^2) # st dev ratio for a given TF, TPR, d
-  M <- d*sqrt(s^2+1) # raw mean difference
+  M <- d*sqrt((s^2+1)/2) # raw mean difference
   OTPRs <- numeric(nSims) # empty container for observed tail proportion ratios
   
   c <<- c + 1 # print global progress and unique info, then print start

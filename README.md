@@ -18,13 +18,11 @@ Directional Error Rate (DER) - A ratio of 1 indicates equality. Real VRs/TPRs in
 &nbsp;
 
 ## [VR Simulation](https://github.com/rjwthree/Tail_Simulations/blob/master/Simulations.R#L9)
-Take the example of real variance ratio (VR) = 1.1 and n = 500. This simulation generates 250 data points from a normal distribution with mean 0 and variance 1, and another 250 from a distribution with mean 0 and variance 1.1. It then computes and records the observed VR. This is performed ten million times, and the result was DER = 22.63%. That is, 22.63% of observed VRs fell below 1, compared to a random baseline of 50%.
+Take the example of real variance ratio (VR) = 1.1 and n = 500. This simulation generates 250 data points from a normal distribution with mean 0 and variance 1, and another 250 from a distribution with mean 0 and variance 1.1. It then computes and records the observed VR. This is performed ten million times, and the result was a directional error rate (DER) of 22.63%. That is, 22.63% of observed VRs fell below 1, compared to a random baseline of 50%.
 
 Real VRs range from 1.1 to 1.4 and sample sizes from 20 to 3,000. Higher real VRs and larger samples produce fewer observed VRs below 1.
 
-
-
-All results are plotted in the [VR Figure](https://raw.githubusercontent.com/rjwthree/Tail_Simulations/master/VR%20Figure.png):
+All results are plotted in the [VR Figure](https://raw.githubusercontent.com/rjwthree/Tail_Simulations/master/VR%20Figure.png). You can see that large sample sizes are required to provide a DER that falls far below the random level of 50%. A paper published in a prominent educational journal by [Kersey et al. (2018)](https://www.nature.com/articles/s41539-018-0028-7) analyzed sex differences in cognitive test scores in slightly unbalanced samples of children ranging in size from 80 to 275. It is evident from the figure below that the error rate is quite high even for the largest sample, especially if the real VR were less than 1.3. Although Kersey and colleagues were conscious of statistical power for mean differences, they entirely neglected their insufficient power with regard to variance differences. This implies that their sample could not produce a reliably accurate estimate of the VR.
 
 <p align="center">
 <img src="https://github.com/rjwthree/Tail_Simulations/blob/master/VR%20Figure.png" width="700" height="600"/>

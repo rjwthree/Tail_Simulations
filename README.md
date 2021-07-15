@@ -35,7 +35,7 @@ Take the example of real VR = 1.3 and n = 1,000. This simulation generates 500 d
 
 This simulation computes the power to detect a variance difference with real VRs ranging from 1.1 to 1.4 and sample sizes from 20 to 15,000. Higher real VRs and larger samples produce greater power.
 
-Results from sample sizes up to 1,000 are plotted [below](https://raw.githubusercontent.com/rjwthree/Tail_Simulations/master/Levene%201000%20Figure.png). The paper mentioned above by Kersey and colleagues (2018) performed Levene’s procedure on their test score data. Although they found homogeneous variance in every sample, it is clear from the figure below that their sample sizes made this conclusion nearly inevitable. As noted above, they calculated statistical power for mean differences but did not note that they were underpowered to detect variance differences using Levene's test.
+Results from sample sizes up to 1,000 are plotted [below](https://raw.githubusercontent.com/rjwthree/Tail_Simulations/master/Levene%201000%20Figure.png). The paper mentioned above by Kersey and colleagues (2018) performed Levene’s procedure on their test score data. Although they found homogeneous variance in every sample, it is clear from the figure below that their sample sizes (80-275) made this conclusion nearly inevitable. As noted above, they calculated statistical power for mean differences but did not observe that they were severely underpowered to detect variance differences using Levene's test.
 
 <p align="center">
 <img src="https://github.com/rjwthree/Tail_Simulations/blob/master/Levene%201000%20Figure.png" width="700" height="600"/>
@@ -58,7 +58,7 @@ The simple variant uses real TPRs of 1.1, 1.2, and 1.5; tail fractions of 1% and
 
 See the file [TPR_Simulation.pdf](https://github.com/rjwthree/Tail_Simulations/blob/master/TPR_simulation.pdf) for an explanation of the formulas for the standard deviation ratio.
 
-Results from the simple variant are plotted [here](https://raw.githubusercontent.com/rjwthree/Tail_Simulations/master/TPR%20Figure.png):
+Results from the simple variant are plotted [below](https://raw.githubusercontent.com/rjwthree/Tail_Simulations/master/TPR%20Figure.png). A paper published in the prominent journal _Science_ by [Hyde et al. (2008)](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.888.6177&rep=rep1&type=pdf) calculated two TPRs above the 99th percentile of a particular subset of a subset of their large sample. [Hyde and Mertz (2009)](https://www.pnas.org/content/pnas/106/22/8801.full.pdf) used the contrast between TPRs in the White and Asian-American subsamples to make a broad assertion that such TPRs are malleable and culturally sensitive. Is such a statement statistically justified? Couldn't this difference have occurred by chance? The authors did not disclose the number of students in each tail above the 99th percentile, but it can be calculated that the tail size was a mere 48.
 
 <p align="center">
 <img src="https://github.com/rjwthree/Tail_Simulations/blob/master/TPR%20Figure.png" width="700" height="600"/>
